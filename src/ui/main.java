@@ -1,9 +1,14 @@
 package ui;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class main extends Application {
+
+    CFG_GUI cfgGui;
 
     public static void main (String [] args) {
         launch(args);
@@ -26,6 +31,14 @@ public class main extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
+        cfgGui = new CFG_GUI();
 
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("interface/cfg-creation.fxml"));
+        fxmlLoader.setController(cfgGui);
+        Parent root = fxmlLoader.load();
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("CYK Algorithm");
+        primaryStage.show();
     }
 }

@@ -8,6 +8,8 @@ public class GIC {
     private char[] symbols;
     private char initialSymbol;
     private HashMap<Character, String> productions;
+    char [][] cykTable;
+
 
     public GIC (String inputVariables, String inputSymbols, Character inputInitialSymbol, HashMap<Character, String> inputProductions) {
         variables = inputVariables.toCharArray();
@@ -49,7 +51,22 @@ public class GIC {
     }
 
     public boolean cykAlgorithm (String w) {
-        return true;
+        initializeTable(w);
+        int n = w.length();
+        for (int j = 1; j < n; j++) {
+            for (int i = 0; i < n - j + 1; i++) {
+                for (int k = 0; k < j - 1; k++){
+                    String productionToSearch = "" + cykTable[i][k] + cykTable[i + k][j - k];
+                    for (char key : productions.keySet()) {
+                        if (productions.get(key).contains(productionToSearch)) {
+                            cykTable[i][j] = key;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        return cykTable[1][n] == initialSymbol;
     }
 
     public boolean isCNF () {
@@ -122,4 +139,16 @@ public class GIC {
         return charactersArrayList;
     }
 
+    private void initializeTable (String w) {
+        cykTable  = new char[w.length()][w.length()];
+        //Fill the first column
+        for (int i = 0; i < w.length(); i++) {
+            for (char key : productions.keySet()){
+                if (productions.get(key).contains("" + w.charAt(i))) {
+                    cykTable[i][1] = key;
+                    break;
+                }
+            }
+        }
+    }
 }

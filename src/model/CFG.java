@@ -11,11 +11,10 @@ public class GIC {
     char [][] cykTable;
 
 
-    public GIC (String inputVariables, String inputSymbols, Character inputInitialSymbol, HashMap<Character, String> inputProductions) {
+    public GIC (String inputVariables, String inputSymbols, char inputInitialSymbol) {
         variables = inputVariables.toCharArray();
         symbols = inputSymbols.toCharArray();
         initialSymbol = inputInitialSymbol;
-        productions = inputProductions;
     }
 
     public char [] getVariables() {
@@ -55,7 +54,7 @@ public class GIC {
         int n = w.length();
         for (int j = 1; j < n; j++) {
             for (int i = 0; i < n - j + 1; i++) {
-                for (int k = 0; k < j - 1; k++){
+                for (int k = 0; k < j - 1; k++){    //TODO create a sentinel to this loop when the key contains the production to search
                     String productionToSearch = "" + cykTable[i][k] + cykTable[i + k][j - k];
                     for (char key : productions.keySet()) {
                         if (productions.get(key).contains(productionToSearch)) {

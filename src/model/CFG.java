@@ -2,7 +2,7 @@ package model;
 
 import java.util.*;
 
-public class GIC {
+public class CFG {
 
     private char[] variables;
     private char[] symbols;
@@ -11,7 +11,7 @@ public class GIC {
     char [][] cykTable;
 
 
-    public GIC (String inputVariables, String inputSymbols, char inputInitialSymbol) {
+    public CFG(String inputVariables, String inputSymbols, char inputInitialSymbol) {
         variables = inputVariables.toCharArray();
         symbols = inputSymbols.toCharArray();
         initialSymbol = inputInitialSymbol;

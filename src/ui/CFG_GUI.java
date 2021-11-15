@@ -2,10 +2,22 @@ package ui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import model.CFG;
+
+import java.io.IOException;
 
 public class CFG_GUI {
+
+    CFG cfg;
+    ProductionsGUI productionsGUI;
+
+    @FXML
+    private AnchorPane mainPane;
 
     @FXML
     private TextField variablesTF;
@@ -16,8 +28,11 @@ public class CFG_GUI {
     @FXML
     private TextField initialSymbolTF;
 
+    public CFG_GUI () {
+    }
+
     @FXML
-    void nextPage(ActionEvent event) {
+    void nextPage(ActionEvent event) throws IOException {
         if (hasEmptyFields()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning");
@@ -57,6 +72,16 @@ public class CFG_GUI {
             String variables = variablesTF.getText();
             String symbols = symbolsTF.getText();
             char initialSymbol = initialSymbolTF.getText().charAt(0);
+
+            cfg = new CFG(variables, symbols, initialSymbol);
+            productionsGUI = new ProductionsGUI (cfg);
+
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("interface/productions.fxml"));
+            fxmlLoader.setController(productionsGUI);
+            Parent root = fxmlLoader.load();
+            mainPane.getChildren().setAll(root);
+
         }
     }
 

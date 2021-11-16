@@ -92,17 +92,17 @@ public class CFG {
 
     private boolean reachableVariables () {
         ArrayList<Character> unreachableVariables = toCharacterArrayList();
-        for (char variable : productions.keySet()) {
+        for (Character variable : productions.keySet()) {
             for (String production : productions.values()){
                 if (!productions.get(variable).equals(production)) {
                     if (production.contains("" + variable)) {
-                        unreachableVariables.remove(variable);
+                        if (unreachableVariables.remove(variable))
                         break;
                     }
                 }
             }
         }
-        return !unreachableVariables.isEmpty();
+        return unreachableVariables.isEmpty();
     }
 
     private boolean terminableVariables () {

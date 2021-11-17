@@ -66,6 +66,10 @@ public class InputStringGUI {
         }
     }*/
 
+    /** Checks if string is correct and has correct format
+     * @param string a string to be checked
+     * @return true if the string matches the grammar symbols and is not empty
+     */
     private boolean check(String string) {
         String symbols = Arrays.toString(cfg.getSymbols());
         return string.matches("[" + symbols + "]+") && !string.isEmpty();

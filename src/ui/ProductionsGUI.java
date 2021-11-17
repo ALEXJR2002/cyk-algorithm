@@ -85,6 +85,9 @@ public class ProductionsGUI {
         }
     }
 
+    /**
+     * Set the input productions to the grammar productions.
+     */
     private void assignProductions() {
         HashMap<Character, String> productions = new HashMap<>();
         for (int i = 0; i < textFields.length; i++) {
@@ -95,6 +98,9 @@ public class ProductionsGUI {
         cfg.setProductions(productions);
     }
 
+    /** Checks if the variables and the productions are in a wrong format.
+     * @return true if exist an input in a wrong format.
+     */
     private boolean isWrongFormat() {
         String variables = Arrays.toString(cfg.getVariables());
         String symbols = Arrays.toString(cfg.getSymbols());
@@ -108,6 +114,9 @@ public class ProductionsGUI {
         return isWrongFormat;
     }
 
+    /** Checks if exists an input with empty fields
+     * @return true if exists an input with empty fields, false otherwise
+     */
     private boolean hasEmptyFields() {
         boolean hasEmptyField = false;
         for (int i = 0; i < textFields.length && !hasEmptyField; i++) {
@@ -120,10 +129,16 @@ public class ProductionsGUI {
     }
 
 
+    /**
+     * Initialize the pane
+     */
     public void initialize() {
         fillTable();
     }
 
+    /**
+     * Creates the table with respective number of variables and productions
+     */
     private void fillTable() {
         textFields = new TextField[cfg.getVariables().length][2];
         char [] variablesArray = cfg.getVariables();

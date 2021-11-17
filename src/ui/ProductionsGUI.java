@@ -2,8 +2,10 @@ package ui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -12,6 +14,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import model.CFG;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 
@@ -50,7 +53,7 @@ public class ProductionsGUI {
     }
 
     @FXML
-    void nextPage(ActionEvent event) {
+    void nextPage(ActionEvent event) throws IOException {
         if (hasEmptyFields()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning");
@@ -63,11 +66,15 @@ public class ProductionsGUI {
             alert.setTitle("Error");
             alert.setHeaderText("Wrong Format");
             alert.setContentText("Some variables or productions are in wrong format. Please fix it.");
+            alert.showAndWait();
         }else {
             assignProductions();
-            System.out.println("Productions assigned");
             if (cfg.isCNF()){
-                System.out.println("Is CNF");
+                InputStringGUI inputStringGUI = new InputStringGUI(cfg);
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("interface/input-string.fxml"));
+                fxmlLoader.setController(inputStringGUI);
+                Parent root = fxmlLoader.load();
+                anchorPane.getChildren().setAll(root);
             }else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");

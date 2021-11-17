@@ -85,6 +85,9 @@ public class CFG_GUI {
         }
     }
 
+    /** Checks if some input has empty fields
+     * @return true if exists an input with empty field
+     */
     private boolean hasEmptyFields () {
         String variables = variablesTF.getText();
         String symbols = symbolsTF.getText();
@@ -93,6 +96,9 @@ public class CFG_GUI {
         return variables.isEmpty() || symbols.isEmpty() || initialSymbol.isEmpty();
     }
 
+    /** Checks if the variables input is uppercase
+     * @return true if variales input is uppercase, false otherwise
+     */
     private boolean isUppercase () {
         String variables = variablesTF.getText();
         String uppercaseVariables = variables.toUpperCase();
@@ -100,6 +106,9 @@ public class CFG_GUI {
         return variables.equals(uppercaseVariables);
     }
 
+    /** Checks if symbols input is lowercase.
+     * @return true if symbols input is lowercase, false otherwise.
+     */
     private boolean isLowercase () {
         String symbols = symbolsTF.getText();
         String lowercaseSymbols = symbols.toLowerCase();
@@ -107,6 +116,9 @@ public class CFG_GUI {
         return symbols.equals(lowercaseSymbols);
     }
 
+    /** Checks if the initial symbol is a grammar variable.
+     * @return true is the initial symbol is a grammar variable, false otherwise.
+     */
     private boolean isVariable () {
         String variables = variablesTF.getText();
         String initialSymbol = initialSymbolTF.getText();
@@ -116,6 +128,9 @@ public class CFG_GUI {
         return variables.contains(initialSymbol) && length == 1;
     }
 
+    /** Checks if exists an input with spaces.
+     * @return true if exists an input with spaces, false otherwise.
+     */
     private boolean containsSpaces () {
         String space = " ";
         boolean variables = variablesTF.getText().contains(space);

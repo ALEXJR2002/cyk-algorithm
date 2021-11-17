@@ -1,5 +1,7 @@
 package model;
 
+import com.sun.javafx.scene.control.skin.VirtualFlow;
+
 import java.util.*;
 
 public class CFG {
@@ -8,6 +10,7 @@ public class CFG {
     private char[] symbols;
     private char initialSymbol;
     private HashMap<Character, String> productions;
+
     char [][] cykTable;
 
 
@@ -49,13 +52,17 @@ public class CFG {
         this.productions = productions;
     }
 
+    public char[][] getCykTable() {
+        return cykTable;
+    }
+
     public boolean cykAlgorithm (String w) {
         initializeTable(w);
         int n = w.length();
         for (int j = 1; j < n; j++) {
-            for (int i = 0; i < n - j + 1; i++) {
-                for (int k = 0; k < j - 1; k++){    //TODO create a sentinel to this loop when the key contains the production to search
-                    String productionToSearch = "" + cykTable[i][k] + cykTable[i + k][j - k];
+            for (int i = 0; i < n - j; i++) {
+                for (int k = 0; k < j; k++){
+                    String productionToSearch = "" + cykTable[i][k] + cykTable[i + k + 1][j - k - 1];
                     for (char key : productions.keySet()) {
                         if (productions.get(key).contains(productionToSearch)) {
                             cykTable[i][j] = key;
@@ -65,11 +72,11 @@ public class CFG {
                 }
             }
         }
-        return cykTable[1][n] == initialSymbol;
+        return cykTable[0][n - 1] == initialSymbol;
     }
 
     public boolean isCNF () {
-        return reachableVariables() && terminableVariables() && !hasLambdaProductions() && hasBinaryOrSimpleProductions();
+        return hasBinaryOrSimpleProductions() && reachableVariables() && terminableVariables() && !hasLambdaProductions();
     }
 
     private boolean hasBinaryOrSimpleProductions () {
@@ -107,10 +114,20 @@ public class CFG {
 
     private boolean terminableVariables () {
         ArrayList<Character> generating = new ArrayList<>();
-        for (char variable : productions.keySet()) {
+        ArrayList<Character> variableArrayList = toCharacterArrayList();
+        variableArrayList.add(initialSymbol);
+        for (Character variable : productions.keySet()) {
             String [] production = productions.get(variable).split("\\|");
             for (String s : production) {
                 if (s.equals(s.toLowerCase())) {
+                    generating.add(variable);
+                    break;
+                }
+            }
+        }
+        for (Character variable : variableArrayList) {
+            for (Character generatingVariable : generating) {
+                if (productions.get(variable).contains("" + generatingVariable) && !generating.contains(variable)) {
                     generating.add(variable);
                     break;
                 }
@@ -144,10 +161,21 @@ public class CFG {
         for (int i = 0; i < w.length(); i++) {
             for (char key : productions.keySet()){
                 if (productions.get(key).contains("" + w.charAt(i))) {
-                    cykTable[i][1] = key;
+                    cykTable[i][0] = key;
                     break;
                 }
             }
         }
+    }
+
+    public String cykTableToString () {
+        String message = "";
+        for (int i = 0; i < cykTable.length; i++) {
+            for (int j = 0; j < cykTable[i].length; j++) {
+                message += cykTable[i][j];
+            }
+            message += "\n";
+        }
+        return message;
     }
 }

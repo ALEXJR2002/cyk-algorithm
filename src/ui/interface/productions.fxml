@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #778899;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label alignment="CENTER" layoutX="212.0" layoutY="41.0" text="Now, let's create our productions" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="210.0" AnchorPane.topAnchor="40.0" />
       <Button layoutX="266.0" layoutY="345.0" mnemonicParsing="false" onAction="#nextPage" text="Continuar" />
@@ -39,9 +39,9 @@
       <HBox alignment="CENTER" layoutX="75.0" layoutY="64.0" prefHeight="40.0" prefWidth="450.0" spacing="5.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="64.0">
          <children>
             <Label text="Please, use " />
-            <TextField alignment="CENTER" editable="false" prefHeight="25.0" prefWidth="22.0" text="|" />
+            <TextField alignment="CENTER" editable="false" prefHeight="25.0" prefWidth="45.0" text="|" />
             <Label text="separator. And here is " />
-            <TextField alignment="CENTER" editable="false" prefHeight="25.0" prefWidth="22.0" text="λ" />
+            <TextField alignment="CENTER" editable="false" prefHeight="30.0" prefWidth="45.0" text="λ" />
             <Label text="symbol" />
          </children>
       </HBox>

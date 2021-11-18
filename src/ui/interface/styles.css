@@ -1,0 +1,20 @@
+.root * {
+    -fx-font-family: "Gill Sans MT";
+    -fx-font-size: 15px;
+    -fx-background-color: #778899;
+}
+
+.text-field {
+    -fx-background-color:  transparent;
+    -fx-border-color:  #ffd54f;
+    -fx-text-fill: #696969;
+    -fx-border-width:  0px 0px 2px 0px;
+}
+
+.button {
+    -fx-background-color:  #ffd54f;
+    -fx-background-radius:  10;
+    -fx-border-color:  #ffb300;
+    -fx-border-radius:  10;
+    -fx-border-width: 2px;
+}

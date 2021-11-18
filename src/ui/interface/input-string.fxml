@@ -13,7 +13,7 @@
 
 <AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label alignment="CENTER" layoutX="165.0" layoutY="40.0" prefHeight="17.0" prefWidth="271.0" text="It's time to test if a string belong to the grammar" AnchorPane.leftAnchor="165.0" AnchorPane.rightAnchor="164.0" AnchorPane.topAnchor="40.0" />
+      <Label alignment="CENTER" layoutX="129.0" layoutY="38.0" prefHeight="18.0" prefWidth="342.0" text="It's time to test if a string belong to the grammar" AnchorPane.leftAnchor="129.0" AnchorPane.rightAnchor="129.0" AnchorPane.topAnchor="38.0" />
       <Button layoutX="260.0" layoutY="349.0" mnemonicParsing="false" onAction="#test" prefHeight="25.0" prefWidth="80.0" text="Test" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="260.0" AnchorPane.rightAnchor="260.0" />
       <VBox alignment="TOP_CENTER" fillWidth="false" layoutX="154.0" layoutY="94.0" prefHeight="228.0" prefWidth="293.0" spacing="10.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="80.0">
          <children>

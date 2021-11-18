@@ -36,7 +36,7 @@
             </GridPane>
          </content>
       </ScrollPane>
-      <HBox alignment="CENTER" layoutX="140.0" layoutY="71.0" prefHeight="25.0" prefWidth="320.0" spacing="5.0" AnchorPane.leftAnchor="140.0" AnchorPane.rightAnchor="140.0" AnchorPane.topAnchor="70.0">
+      <HBox alignment="CENTER" layoutX="75.0" layoutY="64.0" prefHeight="40.0" prefWidth="450.0" spacing="5.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="64.0">
          <children>
             <Label text="Please, use " />
             <TextField alignment="CENTER" editable="false" prefHeight="25.0" prefWidth="22.0" text="|" />
